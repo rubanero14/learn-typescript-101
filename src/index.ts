@@ -4,6 +4,8 @@ title.textContent = "Learn Typescript";
 
 const output: HTMLDivElement = document.querySelector(".ts-output");
 
+const ytLink: HTMLAnchorElement = document.querySelector(".ytLink");
+
 // Data Type
 let message: string = "hello";
 message = "world";
@@ -79,5 +81,21 @@ let unknownVar: unknown = 123;
 unknownVar = "null"; // type unknown is similar to type any, but bug free, example as below
 // console.log(unknownVar.doSomething()); // TS throws error to highlight the the function dont exist which type any fails to do
 
+const YoutubeURLwithTimeStampGenerator = (
+  url: string,
+  timeStamp: string
+): string => {
+  const minToSec: number =
+    +timeStamp.split(":")[0] * 60 + +timeStamp.split(":")[1];
+
+  return url + "&t=" + minToSec;
+};
+
 // Output
 output.textContent = user2.greet();
+
+// YT Link Output
+ytLink.setAttribute(
+  "href",
+  YoutubeURLwithTimeStampGenerator("https://youtu.be/gp5H0Vw39yw", "47:36")
+);

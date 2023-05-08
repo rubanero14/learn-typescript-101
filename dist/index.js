@@ -2,6 +2,7 @@
 var title = document.querySelector("title");
 title.textContent = "Learn Typescript";
 var output = document.querySelector(".ts-output");
+var ytLink = document.querySelector(".ytLink");
 // Data Type
 var message = "hello";
 message = "world";
@@ -45,5 +46,11 @@ var anyVar = 123;
 var unknownVar = 123;
 unknownVar = "null"; // type unknown is similar to type any, but bug free, example as below
 // console.log(unknownVar.doSomething()); // TS throws error to highlight the the function dont exist which type any fails to do
+var YoutubeURLwithTimeStampGenerator = function (url, timeStamp) {
+    var minToSec = +timeStamp.split(":")[0] * 60 + +timeStamp.split(":")[1];
+    return url + "&t=" + minToSec;
+};
 // Output
 output.textContent = user2.greet();
+// YT Link Output
+ytLink.setAttribute("href", YoutubeURLwithTimeStampGenerator("https://youtu.be/gp5H0Vw39yw", "47:36"));
