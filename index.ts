@@ -99,8 +99,8 @@ const YoutubeURLwithTimeStampGenerator = (
   ss: string = "00"
 ): string => {
   const formattedUrl: string = url.replace(
-    "https://www.youtube.com/watch?v=",
-    "https://youtu.be/"
+    "www.youtube.com/watch?v=",
+    "youtu.be/"
   );
   toSec = +hh * 3600 + +mm * 60 + +ss;
   console.log(formattedUrl + "&t=" + toSec + "s");

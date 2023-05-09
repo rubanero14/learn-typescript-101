@@ -62,7 +62,7 @@ var YoutubeURLwithTimeStampGenerator = function (url, hh, mm, ss) {
     if (hh === void 0) { hh = "00"; }
     if (mm === void 0) { mm = "00"; }
     if (ss === void 0) { ss = "00"; }
-    var formattedUrl = url.replace("https://www.youtube.com/watch?v=", "https://youtu.be/");
+    var formattedUrl = url.replace("www.youtube.com/watch?v=", "youtu.be/");
     toSec = +hh * 3600 + +mm * 60 + +ss;
     console.log(formattedUrl + "&t=" + toSec + "s");
     return formattedUrl + "&t=" + toSec + "s";
