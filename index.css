@@ -32,3 +32,9 @@ h1,
 .timestamp {
   margin-bottom: 1rem;
 }
+
+.minute,
+.second,
+.hour {
+  width: 60px;
+}

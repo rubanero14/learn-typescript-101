@@ -32,6 +32,7 @@
               type="number"
               placeholder="HH"
               maxlength="3"
+              min="0"
               size="3"
             />
             :
@@ -40,15 +41,17 @@
               type="number"
               placeholder="MM"
               maxlength="2"
+              min="0"
               size="2"
             />
             :
             <input
               class="second"
+              type="number"
               placeholder="SS"
               maxlength="2"
+              min="0"
               size="2"
-              type="number"
             />
           </div>
           <button class="sumbit" type="button" onclick="submit()">
