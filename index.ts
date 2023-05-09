@@ -1,10 +1,14 @@
 // Element type
 const title: HTMLTitleElement = document.querySelector("title");
 title.textContent = "Learn Typescript";
-
 const output: HTMLDivElement = document.querySelector(".ts-output");
-
 const ytLink: HTMLAnchorElement = document.querySelector(".ytLink");
+const ytUrl: HTMLInputElement = document.querySelector(".ytUrl");
+const hour: HTMLInputElement = document.querySelector(".hour");
+const minute: HTMLInputElement = document.querySelector(".minute");
+const second: HTMLInputElement = document.querySelector(".second");
+const submitBtn: HTMLButtonElement = document.querySelector(".submit");
+const ytVid: HTMLIFrameElement = document.querySelector(".ytVid");
 
 // Data Type
 let message: string = "hello";
@@ -81,21 +85,62 @@ let unknownVar: unknown = 123;
 unknownVar = "null"; // type unknown is similar to type any, but bug free, example as below
 // console.log(unknownVar.doSomething()); // TS throws error to highlight the the function dont exist which type any fails to do
 
-const YoutubeURLwithTimeStampGenerator = (
-  url: string,
-  timeStamp: string
-): string => {
-  const minToSec: number =
-    +timeStamp.split(":")[0] * 60 + +timeStamp.split(":")[1];
+// Output
+// output.textContent = user2.greet();
 
-  return url + "&t=" + minToSec;
+// To Sec
+let toSec: number | null = null;
+
+// Youtube URL with TimeStamp Generator Algorithm
+const YoutubeURLwithTimeStampGenerator = (
+  url: string = "",
+  hh: string = "00",
+  mm: string = "00",
+  ss: string = "00"
+): string => {
+  const formattedUrl: string = url.replace(
+    "https://www.youtube.com/watch?v=",
+    "https://youtu.be/"
+  );
+  toSec = +hh * 3600 + +mm * 60 + +ss;
+  console.log(formattedUrl + "&t=" + toSec + "s");
+  return formattedUrl + "&t=" + toSec + "s";
 };
 
-// Output
-output.textContent = user2.greet();
+let url: string = "";
+let hr: string = "";
+let min: string = "";
+let sec: string = "";
+let formattedUrl: string = "";
 
-// YT Link Output
-ytLink.setAttribute(
-  "href",
-  YoutubeURLwithTimeStampGenerator("https://youtu.be/gp5H0Vw39yw", "47:36")
-);
+ytUrl.addEventListener("change", (e: Event) => {
+  if (!(e.target instanceof HTMLInputElement)) return;
+  url = e.target.value;
+});
+hour.addEventListener("change", (e: Event) => {
+  if (!(e.target instanceof HTMLInputElement)) return;
+  hr = e.target.value;
+});
+minute.addEventListener("change", (e: Event) => {
+  if (!(e.target instanceof HTMLInputElement)) return;
+  min = e.target.value;
+});
+second.addEventListener("change", (e: Event) => {
+  if (!(e.target instanceof HTMLInputElement)) return;
+  sec = e.target.value;
+});
+
+const submit = () => {
+  formattedUrl = YoutubeURLwithTimeStampGenerator(url, hr, min, sec);
+  ytLink.setAttribute("href", formattedUrl);
+  // Source https://sites.edb.utexas.edu/wordpress/blog/embedding-a-youtube-video-with-start-and-stop-time/
+  const vidSrc =
+    formattedUrl
+      .split("&")[0]
+      .replace("youtu.be", "www.youtube-nocookie.com/embed") +
+    "?start=" +
+    toSec +
+    ";rel=0&amp;showinfo=0";
+  console.log(vidSrc);
+  ytVid.setAttribute("src", vidSrc);
+};

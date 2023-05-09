@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+main {
+  padding: 2rem;
+  text-align: center;
+}
+
+h1,
+.ts-output,
+.ytVid {
+  margin-bottom: 3rem;
+}
+
+.ytLink {
+  display: block;
+}
+
+.ytVid,
+.ytLink {
+  margin-top: 2rem;
+}
+
+.ytLink,
+.ytUrl,
+.timestamp {
+  margin-bottom: 1rem;
+}

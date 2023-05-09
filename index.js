@@ -3,6 +3,12 @@ var title = document.querySelector("title");
 title.textContent = "Learn Typescript";
 var output = document.querySelector(".ts-output");
 var ytLink = document.querySelector(".ytLink");
+var ytUrl = document.querySelector(".ytUrl");
+var hour = document.querySelector(".hour");
+var minute = document.querySelector(".minute");
+var second = document.querySelector(".second");
+var submitBtn = document.querySelector(".submit");
+var ytVid = document.querySelector(".ytVid");
 // Data Type
 var message = "hello";
 message = "world";
@@ -46,11 +52,56 @@ var anyVar = 123;
 var unknownVar = 123;
 unknownVar = "null"; // type unknown is similar to type any, but bug free, example as below
 // console.log(unknownVar.doSomething()); // TS throws error to highlight the the function dont exist which type any fails to do
-var YoutubeURLwithTimeStampGenerator = function (url, timeStamp) {
-    var minToSec = +timeStamp.split(":")[0] * 60 + +timeStamp.split(":")[1];
-    return url + "&t=" + minToSec;
-};
 // Output
-output.textContent = user2.greet();
-// YT Link Output
-ytLink.setAttribute("href", YoutubeURLwithTimeStampGenerator("https://youtu.be/gp5H0Vw39yw", "47:36"));
+// output.textContent = user2.greet();
+// To Sec
+var toSec = null;
+// Youtube URL with TimeStamp Generator Algorithm
+var YoutubeURLwithTimeStampGenerator = function (url, hh, mm, ss) {
+    if (url === void 0) { url = ""; }
+    if (hh === void 0) { hh = "00"; }
+    if (mm === void 0) { mm = "00"; }
+    if (ss === void 0) { ss = "00"; }
+    var formattedUrl = url.replace("https://www.youtube.com/watch?v=", "https://youtu.be/");
+    toSec = +hh * 3600 + +mm * 60 + +ss;
+    console.log(formattedUrl + "&t=" + toSec + "s");
+    return formattedUrl + "&t=" + toSec + "s";
+};
+var url = "";
+var hr = "";
+var min = "";
+var sec = "";
+var formattedUrl = "";
+ytUrl.addEventListener("change", function (e) {
+    if (!(e.target instanceof HTMLInputElement))
+        return;
+    url = e.target.value;
+});
+hour.addEventListener("change", function (e) {
+    if (!(e.target instanceof HTMLInputElement))
+        return;
+    hr = e.target.value;
+});
+minute.addEventListener("change", function (e) {
+    if (!(e.target instanceof HTMLInputElement))
+        return;
+    min = e.target.value;
+});
+second.addEventListener("change", function (e) {
+    if (!(e.target instanceof HTMLInputElement))
+        return;
+    sec = e.target.value;
+});
+var submit = function () {
+    formattedUrl = YoutubeURLwithTimeStampGenerator(url, hr, min, sec);
+    ytLink.setAttribute("href", formattedUrl);
+    // Source https://sites.edb.utexas.edu/wordpress/blog/embedding-a-youtube-video-with-start-and-stop-time/
+    var vidSrc = formattedUrl
+        .split("&")[0]
+        .replace("youtu.be", "www.youtube-nocookie.com/embed") +
+        "?start=" +
+        toSec +
+        ";rel=0&amp;showinfo=0";
+    console.log(vidSrc);
+    ytVid.setAttribute("src", vidSrc);
+};

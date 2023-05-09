@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Nothing</title>
+  </head>
+  <body>
+    <main>
+      <div>
+        <h1>Youtube Video with Time Stamp Generator</h1>
+        <div class="ts-output"></div>
+        <div>
+          <input class="ytUrl" type="text" placeholder="Enter YT Url.." />
+          <div class="timestamp">
+            <input
+              class="hour"
+              type="text"
+              placeholder="HH"
+              maxlength="2"
+              size="2"
+              type="text"
+            />
+            :
+            <input
+              class="minute"
+              type="text"
+              placeholder="MM"
+              maxlength="2"
+              size="2"
+              type="text"
+            />
+            :
+            <input
+              class="second"
+              type="text"
+              placeholder="SS"
+              maxlength="2"
+              size="2"
+              type="text"
+            />
+          </div>
+          <button class="sumbit" type="button" onclick="submit()">
+            Generate Video Link
+          </button>
+        </div>
+        <a href="" class="ytLink" target="_blank">Continue Lesson</a>
+        <br />
+        <iframe
+          class="ytVid"
+          src=""
+          width="720"
+          height="360"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </main>
+  </body>
+  <script src="./index.js"></script>
+</html>
