@@ -95,6 +95,8 @@ second.addEventListener("change", function (e) {
 var submit = function () {
     formattedUrl = YoutubeURLwithTimeStampGenerator(url, hr, min, sec);
     ytLink.setAttribute("href", formattedUrl);
+    ytLink.setAttribute("target", "_blank");
+    ytLink.textContent = "Open Lesson in another tab";
     // Source https://sites.edb.utexas.edu/wordpress/blog/embedding-a-youtube-video-with-start-and-stop-time/
     var vidSrc = formattedUrl
         .split("&")[0]
