@@ -113,20 +113,16 @@ let min: string = "";
 let sec: string = "";
 let formattedUrl: string = "";
 
-ytUrl.addEventListener("change", (e: Event) => {
-  if (!(e.target instanceof HTMLInputElement)) return;
+ytUrl.addEventListener("change", (e: any) => {
   url = e.target.value;
 });
-hour.addEventListener("change", (e: Event) => {
-  if (!(e.target instanceof HTMLInputElement)) return;
+hour.addEventListener("change", (e: any) => {
   hr = e.target.value;
 });
-minute.addEventListener("change", (e: Event) => {
-  if (!(e.target instanceof HTMLInputElement)) return;
+minute.addEventListener("change", (e: any) => {
   min = e.target.value;
 });
-second.addEventListener("change", (e: Event) => {
-  if (!(e.target instanceof HTMLInputElement)) return;
+second.addEventListener("change", (e: any) => {
   sec = e.target.value;
 });
 

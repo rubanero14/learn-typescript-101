@@ -73,23 +73,15 @@ var min = "";
 var sec = "";
 var formattedUrl = "";
 ytUrl.addEventListener("change", function (e) {
-    if (!(e.target instanceof HTMLInputElement))
-        return;
     url = e.target.value;
 });
 hour.addEventListener("change", function (e) {
-    if (!(e.target instanceof HTMLInputElement))
-        return;
     hr = e.target.value;
 });
 minute.addEventListener("change", function (e) {
-    if (!(e.target instanceof HTMLInputElement))
-        return;
     min = e.target.value;
 });
 second.addEventListener("change", function (e) {
-    if (!(e.target instanceof HTMLInputElement))
-        return;
     sec = e.target.value;
 });
 var submit = function () {

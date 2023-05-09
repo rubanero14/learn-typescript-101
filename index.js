@@ -1,6 +1,6 @@
 // Element type
 var title = document.querySelector("title");
-title.textContent = "Learn Typescript";
+title.textContent = "Youtube Video with Timestamp Generator";
 var output = document.querySelector(".ts-output");
 var ytLink = document.querySelector(".ytLink");
 var ytUrl = document.querySelector(".ytUrl");
@@ -62,7 +62,7 @@ var YoutubeURLwithTimeStampGenerator = function (url, hh, mm, ss) {
     if (hh === void 0) { hh = "00"; }
     if (mm === void 0) { mm = "00"; }
     if (ss === void 0) { ss = "00"; }
-    var formattedUrl = url.replace("https://www.youtube.com/watch?v=", "https://youtu.be/");
+    var formattedUrl = url.replace("www.youtube.com/watch?v=", "youtu.be/");
     toSec = +hh * 3600 + +mm * 60 + +ss;
     console.log(formattedUrl + "&t=" + toSec + "s");
     return formattedUrl + "&t=" + toSec + "s";
@@ -73,28 +73,22 @@ var min = "";
 var sec = "";
 var formattedUrl = "";
 ytUrl.addEventListener("change", function (e) {
-    if (!(e.target instanceof HTMLInputElement))
-        return;
     url = e.target.value;
 });
 hour.addEventListener("change", function (e) {
-    if (!(e.target instanceof HTMLInputElement))
-        return;
     hr = e.target.value;
 });
 minute.addEventListener("change", function (e) {
-    if (!(e.target instanceof HTMLInputElement))
-        return;
     min = e.target.value;
 });
 second.addEventListener("change", function (e) {
-    if (!(e.target instanceof HTMLInputElement))
-        return;
     sec = e.target.value;
 });
 var submit = function () {
     formattedUrl = YoutubeURLwithTimeStampGenerator(url, hr, min, sec);
     ytLink.setAttribute("href", formattedUrl);
+    ytLink.setAttribute("target", "_blank");
+    ytLink.textContent = "Open Lesson in another tab";
     // Source https://sites.edb.utexas.edu/wordpress/blog/embedding-a-youtube-video-with-start-and-stop-time/
     var vidSrc = formattedUrl
         .split("&")[0]
