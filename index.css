@@ -21,7 +21,9 @@ h1,
 }
 
 .ytVid,
-.ytLink {
+.ytLink,
+.timestamp,
+.submit {
   margin-top: 2rem;
 }
 
