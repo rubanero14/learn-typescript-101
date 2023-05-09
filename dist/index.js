@@ -1,6 +1,6 @@
 // Element type
 var title = document.querySelector("title");
-title.textContent = "Youtube Video with Time Stamp Generator";
+title.textContent = "Youtube Video with Timestamp Generator";
 var output = document.querySelector(".ts-output");
 var ytLink = document.querySelector(".ytLink");
 var ytUrl = document.querySelector(".ytUrl");

@@ -1,6 +1,6 @@
 // Element type
 const title: HTMLTitleElement = document.querySelector("title");
-title.textContent = "Youtube Video with Time Stamp Generator";
+title.textContent = "Youtube Video with Timestamp Generator";
 const output: HTMLDivElement = document.querySelector(".ts-output");
 const ytLink: HTMLAnchorElement = document.querySelector(".ytLink");
 const ytUrl: HTMLInputElement = document.querySelector(".ytUrl");
