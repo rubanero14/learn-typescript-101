@@ -1,14 +1,3 @@
-// Element type
-var title = document.querySelector("title");
-title.textContent = "Youtube Video with Timestamp Generator";
-var output = document.querySelector(".ts-output");
-var ytLink = document.querySelector(".ytLink");
-var ytUrl = document.querySelector(".ytUrl");
-var hour = document.querySelector(".hour");
-var minute = document.querySelector(".minute");
-var second = document.querySelector(".second");
-var submitBtn = document.querySelector(".submit");
-var ytVid = document.querySelector(".ytVid");
 // Data Type
 var message = "hello";
 message = "world";
@@ -52,10 +41,53 @@ var anyVar = 123;
 var unknownVar = 123;
 unknownVar = "null"; // type unknown is similar to type any, but bug free, example as below
 // console.log(unknownVar.doSomething()); // TS throws error to highlight the the function dont exist which type any fails to do
+var varAny = 10;
+var varUnknown = 10;
+var stringOne = varAny;
+var stringTwo = varUnknown; // AS keyword works as type assertion to convert unknown type to string
+var pageNumberOne = "1";
+var numericPageNumberOne = pageNumberOne; // since we cant assert type number from string, it needs to convert to unknown type and then to number
+// Classes in Typescript
+var User = /** @class */ (function () {
+    // Constructor declaration
+    function User(firstName, lastName, age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+    // Function declaration
+    User.prototype.getFullName = function () {
+        return this.firstName + " " + this.lastName;
+    };
+    User.prototype.getAge = function () {
+        return this.age;
+    };
+    return User;
+}());
+var newUser = new User("El", "Discreto", 37);
+console.log("User Class Fullname: ", newUser.getFullName());
+console.log("User Class Age: ", newUser.getAge());
 // Output
 // output.textContent = user2.greet();
+// Element type | Working with DOM
+var title = document.querySelector("title");
+title.textContent = "Youtube Video with Timestamp Generator";
+var output = document.querySelector(".ts-output");
+var ytLink = document.querySelector(".ytLink");
+var ytUrl = document.querySelector(".ytUrl");
+var hour = document.querySelector(".hour");
+var minute = document.querySelector(".minute");
+var second = document.querySelector(".second");
+var submitBtn = document.querySelector(".submit");
+var ytVid = document.querySelector(".ytVid"); // Element type can be declared using type assertion as well
 // To Sec
 var toSec = null;
+// Adding event listeners
+ytUrl.addEventListener("change", function (event) {
+    // reading event target value
+    var Event = event.target; // Here we type assert event.target as HTML input type and the we access its value below for cleaner code
+    console.log("Value of URL: ", Event.value);
+});
 // Youtube URL with TimeStamp Generator Algorithm
 var YoutubeURLwithTimeStampGenerator = function (url, hh, mm, ss) {
     if (url === void 0) { url = ""; }

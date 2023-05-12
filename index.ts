@@ -1,15 +1,3 @@
-// Element type
-const title: HTMLTitleElement = document.querySelector("title");
-title.textContent = "Youtube Video with Timestamp Generator";
-const output: HTMLDivElement = document.querySelector(".ts-output");
-const ytLink: HTMLAnchorElement = document.querySelector(".ytLink");
-const ytUrl: HTMLInputElement = document.querySelector(".ytUrl");
-const hour: HTMLInputElement = document.querySelector(".hour");
-const minute: HTMLInputElement = document.querySelector(".minute");
-const second: HTMLInputElement = document.querySelector(".second");
-const submitBtn: HTMLButtonElement = document.querySelector(".submit");
-const ytVid: HTMLIFrameElement = document.querySelector(".ytVid");
-
 // Data Type
 let message: string = "hello";
 message = "world";
@@ -84,12 +72,69 @@ let anyVar: any = 123;
 let unknownVar: unknown = 123;
 unknownVar = "null"; // type unknown is similar to type any, but bug free, example as below
 // console.log(unknownVar.doSomething()); // TS throws error to highlight the the function dont exist which type any fails to do
+let varAny: any = 10;
+let varUnknown: unknown = 10;
+let stringOne: string = varAny;
+let stringTwo: string = varUnknown as string; // AS keyword works as type assertion to convert unknown type to string
+let pageNumberOne: string = "1";
+let numericPageNumberOne: number = pageNumberOne as unknown as number; // since we cant assert type number from string, it needs to convert to unknown type and then to number
+
+// Classes in Typescript
+class User {
+  // There is 3 types of clas variable availability declaration: public, private and protected
+  // Public: variables can be accessed outside class
+  // Private: variables cant be accessed outside class
+  // Protected: variables can be accessed in class and its inheritance (children)
+  // Type declaration
+  private firstName: string; // declaring variable as private needs prefix the keyword private,
+  protected lastName: string;
+  age: number; // if public, we can leave it empty
+
+  // Constructor declaration
+  constructor(firstName: string, lastName: string, age: number) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+  }
+
+  // Function declaration
+  getFullName(): string {
+    return this.firstName + " " + this.lastName;
+  }
+
+  getAge(): number {
+    return this.age;
+  }
+}
+
+const newUser = new User("El", "Discreto", 37);
+console.log("User Class Fullname: ", newUser.getFullName());
+console.log("User Class Age: ", newUser.getAge());
 
 // Output
 // output.textContent = user2.greet();
 
+// Element type | Working with DOM
+const title: HTMLTitleElement = document.querySelector("title");
+title.textContent = "Youtube Video with Timestamp Generator";
+const output: HTMLDivElement = document.querySelector(".ts-output");
+const ytLink: HTMLAnchorElement = document.querySelector(".ytLink");
+const ytUrl: HTMLInputElement = document.querySelector(".ytUrl");
+const hour: HTMLInputElement = document.querySelector(".hour");
+const minute: HTMLInputElement = document.querySelector(".minute");
+const second: HTMLInputElement = document.querySelector(".second");
+const submitBtn: HTMLButtonElement = document.querySelector(".submit");
+const ytVid = document.querySelector(".ytVid") as HTMLIFrameElement; // Element type can be declared using type assertion as well
+
 // To Sec
 let toSec: number | null = null;
+
+// Adding event listeners
+ytUrl.addEventListener("change", (event) => {
+  // reading event target value
+  const Event = event.target as HTMLInputElement; // Here we type assert event.target as HTML input type and the we access its value below for cleaner code
+  console.log("Value of URL: ", Event.value);
+});
 
 // Youtube URL with TimeStamp Generator Algorithm
 const YoutubeURLwithTimeStampGenerator = (
@@ -126,7 +171,7 @@ second.addEventListener("change", (e: any) => {
   sec = e.target.value;
 });
 
-const submit = () => {
+const submit = (): void => {
   formattedUrl = YoutubeURLwithTimeStampGenerator(url, hr, min, sec);
   ytLink.setAttribute("href", formattedUrl);
   ytLink.setAttribute("target", "_blank");
