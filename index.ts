@@ -79,9 +79,15 @@ let stringTwo: string = varUnknown as string; // AS keyword works as type assert
 let pageNumberOne: string = "1";
 let numericPageNumberOne: number = pageNumberOne as unknown as number; // since we cant assert type number from string, it needs to convert to unknown type and then to number
 
-// Classes in Typescript
-class User {
-  // There is 3 types of clas variable availability declaration: public, private and protected
+// Blueprint for class - Interface
+interface UInterface {
+  getFullName(): string;
+  getAge(): number;
+}
+
+// Classes in Typescript - Blueprint for classes aka interface can be invoked by using 'implements' keyword followed by the interface name
+class User implements UInterface {
+  // There is 3 types of class modifiers: public, private and protected
   // Public: variables can be accessed outside class
   // Private: variables cant be accessed outside class
   // Protected: variables can be accessed in class and its inheritance (children)
@@ -89,17 +95,20 @@ class User {
   private firstName: string; // declaring variable as private needs prefix the keyword private,
   protected lastName: string;
   age: number; // if public, we can leave it empty
+  readonly fixedName: string; // readonly acts as similar to const, which is not reassignable
+  static readonly dateOfBirth: Date = new Date("14 July 1986"); // static keyword also another way of securing constant data which is only accessible at parent class level
 
   // Constructor declaration
   constructor(firstName: string, lastName: string, age: number) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.age = age;
+    this.fixedName = firstName + " " + lastName;
   }
 
   // Function declaration
   getFullName(): string {
-    return this.firstName + " " + this.lastName;
+    return this.fixedName;
   }
 
   getAge(): number {
@@ -110,9 +119,32 @@ class User {
 const newUser = new User("El", "Discreto", 37);
 console.log("User Class Fullname: ", newUser.getFullName());
 console.log("User Class Age: ", newUser.getAge());
+console.log(User.dateOfBirth);
+
+// Class extension - Inheritance
+class Student extends User {
+  // We can alse amend the or modify this super class in inheritance
+  private studentId: string;
+
+  setStudentId(id: string): void {
+    this.studentId = id;
+  }
+
+  getStudentId(): string {
+    return this.studentId;
+  }
+}
+
+const student = new Student("Rajaruban", "Chettiar", 37);
+student.setStudentId("ADA1234");
+
+console.log("Inherited class student: ", student);
+console.log("Inherited modified class, student ID: ", student.getStudentId());
 
 // Output
 // output.textContent = user2.greet();
+
+//_________________________________________________________________________________________________________________________________________//
 
 // Element type | Working with DOM
 const title: HTMLTitleElement = document.querySelector("title");

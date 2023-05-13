@@ -1,3 +1,18 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 // Data Type
 var message = "hello";
 message = "world";
@@ -47,28 +62,50 @@ var stringOne = varAny;
 var stringTwo = varUnknown; // AS keyword works as type assertion to convert unknown type to string
 var pageNumberOne = "1";
 var numericPageNumberOne = pageNumberOne; // since we cant assert type number from string, it needs to convert to unknown type and then to number
-// Classes in Typescript
+// Classes in Typescript - Blueprint for classes aka interface can be invoked by using 'implements' keyword followed by the interface name
 var User = /** @class */ (function () {
     // Constructor declaration
     function User(firstName, lastName, age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        this.fixedName = firstName + " " + lastName;
     }
     // Function declaration
     User.prototype.getFullName = function () {
-        return this.firstName + " " + this.lastName;
+        return this.fixedName;
     };
     User.prototype.getAge = function () {
         return this.age;
     };
+    User.dateOfBirth = new Date("14 July 1986"); // static keyword also another way of securing constant data which is only accessible at parent class level
     return User;
 }());
 var newUser = new User("El", "Discreto", 37);
 console.log("User Class Fullname: ", newUser.getFullName());
 console.log("User Class Age: ", newUser.getAge());
+console.log(User.dateOfBirth);
+// Class extension - Inheritance
+var Student = /** @class */ (function (_super) {
+    __extends(Student, _super);
+    function Student() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Student.prototype.setStudentId = function (id) {
+        this.studentId = id;
+    };
+    Student.prototype.getStudentId = function () {
+        return this.studentId;
+    };
+    return Student;
+}(User));
+var student = new Student("Rajaruban", "Chettiar", 37);
+student.setStudentId("ADA1234");
+console.log("Inherited class student: ", student);
+console.log("Inherited modified class, student ID: ", student.getStudentId());
 // Output
 // output.textContent = user2.greet();
+//_________________________________________________________________________________________________________________________________________//
 // Element type | Working with DOM
 var title = document.querySelector("title");
 title.textContent = "Youtube Video with Timestamp Generator";
